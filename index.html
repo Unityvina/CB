@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Giao diện IoT</title>
+  <title>Giao diện IoT - Tối ưu PC</title>
   <style>
     * {
       margin: 0;
@@ -14,27 +14,29 @@
     body, html {
       height: 100%;
       overflow: hidden;
+      font-family: 'Arial', sans-serif;
     }
 
     .background {
       width: 100vw;
       height: 100vh;
-      background-image: url('hinh-nen-naruto-ngau-12.jpg'); /* Thay bằng đường dẫn hình của bạn */
-      background-size: cover;
-      background-position: center;
+      background-image: url('hinh-nen-naruto-ngau-12.jpg'); /* Thay bằng URL hoặc đường dẫn local */
+      background-size: cover; /* Luôn phủ kín màn hình */
+      background-position: center center; /* Căn giữa chính xác cả ngang và dọc */
       background-repeat: no-repeat;
+      background-attachment: fixed; /* FIXED: Hình nền "cố định" khi scroll (rất mượt trên PC lớn) */
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
     }
 
-    /* Tùy chọn: thêm lớp phủ mờ để tăng độ tương phản nếu cần */
+    /* Lớp phủ tối để chữ nổi bật */
     .overlay {
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.3); /* Lớp phủ tối nhẹ */
+      background: rgba(0, 0, 0, 0.45); /* Tăng độ tối nhẹ cho PC */
       z-index: 1;
     }
 
@@ -43,18 +45,55 @@
       z-index: 2;
       color: white;
       text-align: center;
-      font-family: 'Arial', sans-serif;
+      padding: 3rem;
+      max-width: 80%; /* Nội dung không tràn full màn hình rộng */
+      background: rgba(0, 0, 0, 0.2); /* Thêm nền mờ nhẹ cho khối nội dung */
+      border-radius: 20px; /* Bo góc hiện đại */
+      box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3); /* Bóng cyan neon */
     }
 
+    /* Tối ưu CHO PC (màn hình ≥ 1024px) */
+    @media (min-width: 1024px) {
+      .background {
+        background-attachment: fixed; /* Hình nền cố định, không cuộn theo nội dung */
+      }
+
+      .content {
+        max-width: 70%; /* Rộng rãi hơn trên PC */
+        padding: 4rem;
+      }
+
+      .content h1 {
+        font-size: 6rem; /* Siêu lớn, hoành tráng */
+        letter-spacing: 2px; /* Khoảng cách chữ */
+        text-shadow: 0 0 20px rgba(0, 255, 255, 0.9), 0 0 40px rgba(0, 255, 255, 0.5);
+      }
+
+      .content p {
+        font-size: 2.2rem;
+        letter-spacing: 1px;
+      }
+    }
+
+    /* Mobile/Tablet giữ nguyên */
+    @media (max-width: 1023px) {
+      .content h1 {
+        font-size: 3.5rem;
+      }
+
+      .content p {
+        font-size: 1.5rem;
+      }
+    }
+
+    /* Hiệu ứng khi hover (chỉ PC có chuột) */
     .content h1 {
-      font-size: 3.5rem;
-      text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
-      margin-bottom: 1rem;
+      transition: all 0.4s ease;
     }
 
-    .content p {
-      font-size: 1.5rem;
-      text-shadow: 0 0 8px rgba(0, 0, 0, 0.7);
+    .content h1:hover {
+      transform: translateY(-10px) scale(1.08);
+      text-shadow: 0 0 30px rgba(0, 255, 255, 1);
     }
   </style>
 </head>
